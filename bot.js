@@ -39,13 +39,6 @@ client.on("message", message => {
   };     
   });
 
-client.on('message', message => {
-    var  user = message.mentions.users.first() || message.author;
-if (message.content.startsWith("$avatar")) {
-message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
-}
-});
-
 client.on('ready',  () => {
     console.log('تم تشغيل :Broadcast  ');
     console.log(`Logged in as * [ " ${client.user.username} " ] servers! [ " ${client.guilds.size} " ]`);
@@ -53,44 +46,47 @@ client.on('ready',  () => {
     console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
 
-  client.on('message', message => {
-    if(!message.channel.guild) return;
-let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('$adminbc')){
-if(!message.author.id === '476185102922285066') return;
-message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
-client.users.forEach(m =>{
-m.sendMessage(args)
-})
-}
-});
+ 
 
   client.on('message', msg => {
-    if(msg.content === '$help')
+    if(msg.content === '^adminhelp')
     msg.reply('Check Your DM :white_check_mark:')
   });
   
   
   client.on("message", message => {
-    if (message.content === "$help") {
+    if (message.content === "^adminhelp") {
      const embed = new Discord.RichEmbed() 
          .setColor("#00FF00")
          .setThumbnail(message.author.avatarURL)
          .setDescription(`**Help|هيلب
 
-       $obc | لأرسال برود كاست للكل
+       ^obc | لأرسال برود كاست للكل
 
-       $bc  |  لأرسال برود كاست للأونلاين
+       ^bc  |  لأرسال برود كاست للأونلاين
 
-       $adminbc | برودكاست عادي
+       Admin Commands :
 
+       ^setw | WATCHING
+
+       ^setl | LISTENING
+
+       ^sets | STREAMING
+
+       ^setg | PLAYING
+
+       ^setname | CHANGE NAME 
+
+       ^setav | CHANGE AVATAR
+
+       ^leave | THE BOT LEAVE FROM THE SERVER
        ** `)
    message.author.sendEmbed(embed)
    
    }
    });
 
-const developers = ["472413769700474901","id"]
+const developers = ["337457211875917834"]
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
@@ -116,11 +112,11 @@ client.on('message', message => {
   }
   if (message.content.startsWith(adminprefix + 'setname')) {
   client.user.setUsername(argresult).then
-      message.channel.send(`Changing The Name To ..**${argresult}** `)
+      message.channel.send(`Changed The Name To ..**${argresult}** `)
 } else
-if (message.content.startsWith(adminprefix + 'setava')) {
+if (message.content.startsWith(adminprefix + 'setav')) {
   client.user.setAvatar(argresult);
-    message.channel.send(`Changing The Avatar To :**${argresult}** `);
+    message.channel.send(`Changed The Avatar To :**${argresult}** `);
 }
 });
 
